@@ -1,3 +1,22 @@
+# Note
+
+Since ankurk91 decided to stop developpement on this project (nov 27, 2022), this is my own fork for my own use...
+I do accept PR, but I might not maintain or develop new features (especially for non-linux platforms).
+
+Features added :
+
+- [x] Open windows when a chat is recevied
+- [x] Add dev tools to Help > Troubleshooting
+- [x] Support for foreign langages (cf https://github.com/ankurk91/google-chat-electron/issues/131)
+
+TODO :
+
+- [ ] Execute a script/program when a chat is received (eg. to play a sound)
+- [ ] Maybe more...
+
+___
+
+
 # Desktop app for Google Chat
 
 [![latest-tag](https://badgen.net/github/release/ankurk91/google-chat-electron)](https://github.com/ankurk91/google-chat-electron/releases)
