@@ -1,6 +1,6 @@
 # Note
 
-Since ankurk91 decided to stop developpement on this project (nov 27, 2022), this is my own fork for my own use...
+Since [ankurk91](https://github.com/ankurk91) decided to stop developpement on this project (nov 27, 2022), this is my own fork for my own use...
 I do accept PR, but I might not maintain or develop new features (especially for non-linux platforms).
 
 Features added :
