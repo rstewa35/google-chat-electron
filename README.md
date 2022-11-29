@@ -11,7 +11,7 @@ Features added :
 
 TODO :
 
-- [ ] Execute a script/program when a chat is received (eg. to play a sound)
+- [ ] Execute a script/program when a chat is received, eg. to play a sound (half done on linux, will execute `~/.config/google-chat-electron/on-message.sh` if exists)
 - [ ] Maybe more...
 
 ___
