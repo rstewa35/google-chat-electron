@@ -3,9 +3,9 @@
   "version": "2.20.1",
   "description": "Unofficial desktop app for Google Chat.",
   "private": true,
-  "repository": "https://github.com/alescdb/google-chat-electron",
-  "homepage": "https://github.com/alescdb/google-chat-electron",
-  "author": "ankurk91",
+  "repository": "https://github.com/rstewa35/google-chat-electron",
+  "homepage": "https://github.com/rstewa35/google-chat-electron",
+  "author": "rstewa35",
   "license": "GNU GPLv3",
   "main": "lib/main/index.js",
   "scripts": {
