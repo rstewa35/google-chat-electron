@@ -14,7 +14,7 @@ console.log('Prepare iss template file at - ', issFilePath);
 
 let issContent = fs.readFileSync(issFilePath, 'utf8');
 issContent = utils.replace(issContent, {
-  appVersion: manifest.version,
+  appVersion: manifest.version.includes('-') ? manifest.version.split('-')[0] : manifest.version,
 });
 fs.writeFileSync(issFilePath, issContent)
 
