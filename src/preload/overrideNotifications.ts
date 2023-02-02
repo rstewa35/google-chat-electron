@@ -1,31 +1,71 @@
-// https://github.com/jiahaog/nativefier/blob/cf11a71a7c6efd366266fcf39ac6fc49783dd8c7/app/src/preload.ts#L23
-import {ipcRenderer} from 'electron';
+// from: https://github.com/nativefier/nativefier/blob/b74c0bf9592681e489b23e25a12492fefd0b9b90/app/src/preload.ts
 
-// This feature requires contextIsolation to be disabled on BrowserWindow
-// When contextIsolation is enabled, we can not override any global (window.X) API
+import { app, ipcRenderer } from 'electron';
 
-// Notify main process, so that main process can take actions
-// for example: bring the main window in focus
-const clickCallback = () => {
-  ipcRenderer.send('notificationClicked')
+// Do *NOT* add 3rd-party imports here in preload (except for webpack `externals` like electron).
+// They will work during development, but break in the prod build :-/ .
+// Electron doc isn't explicit about that, so maybe *we*'re doing something wrong.
+// At any rate, that's what we have now. If you want an import here, go ahead, but
+// verify that apps built with a non-devbuild nativefier (installed from tarball) work.
+// Recipe to monkey around this, assuming you git-cloned nativefier in /opt/nativefier/ :
+// cd /opt/nativefier/ && rm -f nativefier-43.1.0.tgz && npm run build && npm pack && mkdir -p ~/n4310/ && cd ~/n4310/ \
+//    && rm -rf ./* && npm i /opt/nativefier/nativefier-43.1.0.tgz && ./node_modules/.bin/nativefier 'google.com'
+// See https://github.com/nativefier/nativefier/issues/1175
+// and https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions / preload
+
+const log = console; // since we can't have `loglevel` here in preload
+
+/**
+ * Patches window.Notification to:
+ * - set a callback on a new Notification
+ * - set a callback for clicks on notifications
+ * @param createCallback
+ * @param clickCallback
+ */
+function setNotificationCallback(
+  createCallback: {
+    (title: string, opt: NotificationOptions): void;
+    (...args: unknown[]): void;
+  },
+  clickCallback: { (): void; (this: Notification, ev: Event): unknown },
+): void {
+  const OldNotify = window.Notification;
+  const newNotify = function (
+    title: string,
+    opt: NotificationOptions,
+  ): Notification {
+    createCallback(title, opt);
+    const instance = new OldNotify(title, opt);
+    instance.addEventListener('click', clickCallback);
+    return instance;
+  };
+  newNotify.requestPermission = OldNotify.requestPermission.bind(OldNotify);
+  Object.defineProperty(newNotify, 'permission', {
+    get: () => OldNotify.permission,
+  });
+
+  window.Notification = newNotify as any;
 }
 
-const NativeNotification = window.Notification;
-
-// Note: this must be the good old ES5 function,
-// Dont convert this into an ES6 arrow function
-const newNotify = function (title: string, options?: NotificationOptions) {
-  const instance: Notification = new NativeNotification(title, options);
-  instance.addEventListener('click', clickCallback);
-  return instance;
+function notifyNotificationCreate(
+  title: string,
+  opt: NotificationOptions,
+): void {
+  ipcRenderer.send('notification', title, opt);
+}
+function notifyNotificationClick(): void {
+  ipcRenderer.send('notification-click');
 }
 
-newNotify.requestPermission = NativeNotification.requestPermission.bind(NativeNotification);
+// @ts-expect-error TypeScript thinks these are incompatible but they aren't
+setNotificationCallback(notifyNotificationCreate, notifyNotificationClick);
 
-Object.defineProperty(newNotify, 'permission', {
-  get: () => NativeNotification.permission,
+ipcRenderer.on('params', (event, message: string) => {
+  log.debug('ipcRenderer.params', { event, message });
+  const appArgs = JSON.parse(message);
+  log.info('nativefier.json', appArgs);
 });
 
-window.Notification = newNotify as any;
-
-
+ipcRenderer.on('debug', (event, message: string) => {
+  log.debug('ipcRenderer.debug', { event, message });
+});
