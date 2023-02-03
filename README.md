@@ -1,21 +1,6 @@
 # Note
 
-Since [ankurk91](https://github.com/ankurk91) decided to stop developpement on this project (nov 27, 2022), this is my own fork for my own use...
-I do accept PR, but I might not maintain or develop new features (especially for non-linux platforms).
-
-Features added :
-
-- [x] Open windows when a chat is recevied
-- [x] Add dev tools to Help > Troubleshooting
-- [x] Support for foreign langages (cf https://github.com/ankurk91/google-chat-electron/issues/131)
-
-TODO :
-
-- [ ] Execute a script/program when a chat is received, eg. to play a sound (half done on linux, will execute `~/.config/google-chat-electron/on-message.sh` if exists)
-- [ ] Maybe more...
-
-___
-
+This is a fork of [ankurk91's](https://github.com/ankurk91) [*google-chat-electron*](https://github.com/ankurk91/google-chat-electron) since he will no longer be maintaining it.
 
 # Desktop app for Google Chat
 
@@ -28,8 +13,6 @@ ___
 [![release-windows](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-windows.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-windows.yml)
 
 An unofficial desktop app for [Google Chat](http://chat.google.com) built with [Electron](https://www.electronjs.org)
-
-:mega: Since version 2.17, we have removed support for snap package on Linux
 
 ### Motivation
 
@@ -148,11 +131,15 @@ The app should work on all x64 and Apple arm64 platforms, but due to lack of tim
 * Preserve window position and size
 * Prevent multiple chat app instances from running
 * CTRL+F shortcut to search
+* Open windows when a chat is recevied ([@alescdb](https://github.com/alescdb))
+* Add dev tools to Help > Troubleshooting ([@alescdb](https://github.com/alescdb))
+* Support for foreign langages (cf https://github.com/ankurk91/google-chat-electron/issues/131)
 
 ### Acknowledgements
 
 * [@robyf](https://github.com/robyf/google-chat-linux) for the initial work
 * [@squalou](https://github.com/squalou/google-chat-linux) for enhancements
+* [@alescdb](https://github.com/alescdb/google-chat-electron) for enhancements
 * All past [contributors](https://github.com/ankurk91/google-chat-electron/graphs/contributors)
 
 ## Disclaimer
