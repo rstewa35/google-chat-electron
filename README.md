@@ -1,6 +1,9 @@
 # Note
 
-This is a fork of [ankurk91's](https://github.com/ankurk91) [*google-chat-electron*](https://github.com/ankurk91/google-chat-electron) since he will no longer be maintaining it.
+* This is a fork of [ankurk91's](https://github.com/ankurk91) [*google-chat-electron*](https://github.com/ankurk91/google-chat-electron) since he will no longer be maintaining it.
+* Currently only supporting macOS and Windows for releases, but you are welcome to build from source for any other platform.
+* I plan on adding this package to the app stores struck-through below (e.g., Homebrew, Chocolatey, etc.). I'll update the README when this happens.
+* I also intend on fixing the Linux build in the future when I get some time.
 
 # Desktop app for Google Chat
 
@@ -20,6 +23,79 @@ An unofficial desktop app for [Google Chat](http://chat.google.com) built with [
   2021
 * Google is forcing users to use PWA which has less features
 * You don't want to install Chrome; just to use a PWA. :wink:
+
+### Major features
+
+* System tray
+    - Unread message indicator
+    - Offline indicator (no internet or not logged-in)
+    - Close the app to tray when you close the app window
+* Desktop notifications
+    - Clicking on notification bring the app to focus and open the specific person chat/room
+* Unread message counter in dock
+* Auto start the app when you log in to your machine (configurable)
+* Auto check for updates on startup and notify user if any (configurable)
+* Auto check for internet on startup and keep retrying to connect every 60 seconds if offline
+* Open external links in your OS default web browser
+* Preserve window position and size
+* Prevent multiple chat app instances from running
+* CTRL+F shortcut to search
+* Open windows when a chat is received
+* Add dev tools to Help > Troubleshooting
+* Support for foreign languages
+
+### Installation: (Currently only macOS & Windows)
+
+#### Installation (macOS)
+
+* Download the zip (darwin) file from [releases](https://github.com/ankurk91/google-chat-electron/releases/latest)
+* Extract the zip file
+* Move the app to your `~/Applications` folder
+* Fix the permission issue with this command
+
+```bash
+sudo xattr -rd com.apple.quarantine ~/Applications/google-chat-electron.app
+```
+
+* Above command should fix the Mac-OS Gatekeeper [issue](https://apple.stackexchange.com/questions/262355/)
+
+or
+
+<del>
+
+* Homebrew users can run
+
+```bash
+brew install --cask --no-quarantine google-chat-electron
+```
+
+</del>
+
+#### Uninstall (Mac)
+
+* Logout and Quit from app
+* Move the app to trash
+* 
+#### Installation Windows
+
+* :warning: This app is **NOT** available
+  on [Windows App Store](https://apps.microsoft.com/store/detail/gchat-for-desktop/9MZXBPL66066)
+* You can install this app by [downloading](https://github.com/ankurk91/google-chat-electron/releases/latest) the
+  installer
+
+<del>
+
+* If you prefer [chocolatey](https://chocolatey.org/) on Windows, you can run:
+
+```powershell
+choco install unofficial-google-chat-electron
+```
+
+* If you prefer [winget-cli](https://github.com/microsoft/winget-cli) on Windows 10+, you can run:
+
+```bash
+winget install --id=ankurk91.GoogleChatElectron  -e
+```
 
 ### Installation (Debian based Linux)
 
@@ -42,50 +118,6 @@ sudo apt-get remove --purge google-chat-electron
 
 * The uninstallation script should remove all relevant files and folders.
 
-### Installation (Mac)
-
-* Homebrew users can run
-
-```bash
-brew install --cask --no-quarantine google-chat-electron
-```
-
-or
-
-* Download the zip (darwin) file from [releases](https://github.com/ankurk91/google-chat-electron/releases/latest)
-* Extract the zip file
-* Move the app to your `~/Applications` folder
-* Fix the permission issue with this command
-
-```bash
-sudo xattr -rd com.apple.quarantine ~/Applications/google-chat-electron.app
-```
-
-* Above command should fix the Mac-OS Gatekeeper [issue](https://apple.stackexchange.com/questions/262355/)
-
-### Uninstall (Mac)
-
-* Logout and Quit from app
-* Move the app to trash
-
-### Installation Windows
-
-* :warning: This app is **NOT** available
-  on [Windows App Store](https://apps.microsoft.com/store/detail/gchat-for-desktop/9MZXBPL66066)
-* You can install this app by [downloading](https://github.com/ankurk91/google-chat-electron/releases/latest) the
-  installer
-* If you prefer [chocolatey](https://chocolatey.org/) on Windows, you can run:
-
-```powershell
-choco install unofficial-google-chat-electron
-```
-
-* If you prefer [winget-cli](https://github.com/microsoft/winget-cli) on Windows 10+, you can run:
-
-```bash
-winget install --id=ankurk91.GoogleChatElectron  -e
-```
-
 ### Installation (Fedora/RHEL/CentOS)
 
 We don't provide installers for Fedora/RHEL/CentOS, but you can build a local RPM package by your own.
@@ -104,36 +136,18 @@ npx electron-installer-redhat@^3 --src dist/google-chat-electron-linux-x64 --des
 This will create an RPM package in `./dist/installers` folder (you can specify any location you wish).
 You can install it with `dnf` or `rpm-ostree` depending on your distro.
 
+</del>
+
 ### Supported Platforms
 
 The app should work on all x64 and Apple arm64 platforms, but due to lack of time; we test on most popular only.
 
-| OS/Platform         |    Version    |
-|:--------------------|:-------------:|
-| Ubuntu GNOME        |    20, 22     |
-| Linux Mint Cinnamon |      21       |
-| MacOS               | 10.15, 11, 12 |
-| Windows             |   7, 10, 11   |
-
-### Major features
-
-* System tray
-    - Unread message indicator
-    - Offline indicator (no internet or not logged-in)
-    - Close the app to tray when you close the app window
-* Desktop notifications
-    - Clicking on notification bring the app to focus and open the specific person chat/room
-* Unread message counter in dock
-* Auto start the app when you log in to your machine (configurable)
-* Auto check for updates on startup and notify user if any (configurable)
-* Auto check for internet on startup and keep retrying to connect every 60 seconds if offline
-* Open external links in your OS default web browser
-* Preserve window position and size
-* Prevent multiple chat app instances from running
-* CTRL+F shortcut to search
-* Open windows when a chat is recevied ([@alescdb](https://github.com/alescdb))
-* Add dev tools to Help > Troubleshooting ([@alescdb](https://github.com/alescdb))
-* Support for foreign langages (cf https://github.com/ankurk91/google-chat-electron/issues/131)
+| OS/Platform             |    Version    |
+|:------------------------|:-------------:|
+| MacOS                   | 10.15, 11, 12 |
+| Windows                 |   7, 10, 11   |
+| ~~Ubuntu GNOME~~        |  ~~20, 22~~   |
+| ~~Linux Mint Cinnamon~~ |    ~~21~~     |
 
 ### Acknowledgements
 
