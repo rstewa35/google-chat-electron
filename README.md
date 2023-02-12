@@ -1,11 +1,8 @@
 # Note
 
 * This is a fork of [ankurk91's](https://github.com/ankurk91) [*google-chat-electron*](https://github.com/ankurk91/google-chat-electron) since he will no longer be maintaining it.
-* Currently only supporting macOS and Windows for releases, but you are welcome to build from source for any other platform.
 * I added the **Issues** tab to this repo, so feel free to create one with any issues you run into.
-* When I get some free time, I plan to:
-  * Add package to Homebrew, Chocolatey, etc.
-  * Fix the Linux workflow
+* When I get some free time, I plan to add the package to Homebrew, Chocolatey, etc.
 
 # Desktop app for Google Chat
 
@@ -46,9 +43,7 @@ An unofficial desktop app for [Google Chat](http://chat.google.com) built with [
 * Add dev tools to Help > Troubleshooting
 * Support for foreign languages
 
-### Installation: (Currently only macOS & Windows)
-
-#### Installation (macOS)
+### Installation (macOS)
 
 * Download the zip (darwin) file from [releases](https://github.com/ankurk91/google-chat-electron/releases/latest)
 * Extract the zip file
@@ -73,12 +68,12 @@ brew install --cask --no-quarantine google-chat-electron
 
 </del>
 
-#### Uninstall (Mac)
+### Uninstall (Mac)
 
 * Logout and Quit from app
 * Move the app to trash
-* 
-#### Installation Windows
+
+### Installation Windows
 
 * :warning: This app is **NOT** available
   on [Windows App Store](https://apps.microsoft.com/store/detail/gchat-for-desktop/9MZXBPL66066)
@@ -98,6 +93,8 @@ choco install unofficial-google-chat-electron
 ```bash
 winget install --id=ankurk91.GoogleChatElectron  -e
 ```
+
+</del>
 
 ### Installation (Debian based Linux)
 
@@ -127,7 +124,7 @@ We don't provide installers for Fedora/RHEL/CentOS, but you can build a local RP
 ```bash
 sudo dnf install rpm-build npm
 curl -fsSL https://get.pnpm.io/install.sh | sh -
-git clone https://github.com/ankurk91/google-chat-electron.git
+git clone https://github.com/rstewa35/google-chat-electron.git
 cd google-chat-electron
 
 pnpm install
@@ -138,8 +135,6 @@ npx electron-installer-redhat@^3 --src dist/google-chat-electron-linux-x64 --des
 This will create an RPM package in `./dist/installers` folder (you can specify any location you wish).
 You can install it with `dnf` or `rpm-ostree` depending on your distro.
 
-</del>
-
 ### Supported Platforms
 
 The app should work on all x64 and Apple arm64 platforms, but due to lack of time; we test on most popular only.
@@ -148,8 +143,8 @@ The app should work on all x64 and Apple arm64 platforms, but due to lack of tim
 |:------------------------|:-------------:|
 | MacOS                   | 10.15, 11, 12 |
 | Windows                 |   7, 10, 11   |
-| ~~Ubuntu GNOME~~        |  ~~20, 22~~   |
-| ~~Linux Mint Cinnamon~~ |    ~~21~~     |
+| Ubuntu GNOME            |    20, 22     |
+| Linux Mint Cinnamon     |      21       |
 
 ### Acknowledgements
 
