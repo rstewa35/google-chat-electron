@@ -8,11 +8,12 @@
 
 [![latest-tag](https://badgen.net/github/release/rstewa35/google-chat-electron)](https://github.com/rstewa35/google-chat-electron/releases)
 [![downloads](https://img.shields.io/github/downloads/rstewa35/google-chat-electron/total?cacheSeconds=3600)](https://somsubhra.github.io/github-release-stats/?username=rstewa35&repository=google-chat-electron&page=1&per_page=30)
-<!-- [![homebrew](https://badgen.net/homebrew/cask/dy/google-chat-electron)](https://formulae.brew.sh/cask/google-chat-electron) -->
-<!-- [![chocolatey](https://img.shields.io/chocolatey/dt/unofficial-Google-Chat-Electron?color=blue&label=chocolatey)](https://community.chocolatey.org/packages/unofficial-Google-Chat-Electron) -->
 [![release-linux](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-linux.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-linux.yml)
 [![release-mac](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-mac.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-mac.yml)
 [![release-windows](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-windows.yml/badge.svg)](https://github.com/ankurk91/google-chat-electron/actions/workflows/release-windows.yml)
+
+<!-- [![homebrew](https://badgen.net/homebrew/cask/dy/google-chat-electron)](https://formulae.brew.sh/cask/google-chat-electron) -->
+<!-- [![chocolatey](https://img.shields.io/chocolatey/dt/unofficial-Google-Chat-Electron?color=blue&label=chocolatey)](https://community.chocolatey.org/packages/unofficial-Google-Chat-Electron) -->
 
 An unofficial desktop app for [Google Chat](http://chat.google.com) built with [Electron](https://www.electronjs.org)
 
