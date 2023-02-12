@@ -1,4 +1,5 @@
 import {BrowserWindow, ipcMain, IpcMainEvent} from 'electron';
+import store from '../config';
 
 export default (window: BrowserWindow) => {
 
@@ -10,10 +11,13 @@ export default (window: BrowserWindow) => {
 
     });
 
-    // ipcMain.on('notification', (event: IpcMainEvent, title, opt) => {
-    //   if (window.isFocused()) {
-    //     return;
-    //   }
-    //
-    // });
+    ipcMain.on('notification', (event: IpcMainEvent, title, opt) => {
+
+        if (store.get('app.showOnMessage')) {
+            if (!window.isVisible() || !window.isFocused()) {
+                window.show()
+            }
+        }
+
+    });
 }

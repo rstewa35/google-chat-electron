@@ -1,9 +1,6 @@
 import {app, BrowserWindow, ipcMain, nativeImage, Tray} from 'electron';
 import path from 'path';
 import {is} from "electron-util";
-import store from '../config';
-import fs from 'fs';
-import {spawn} from 'child_process';
 
 type IconTypes = 'offline' | 'normal' | 'badge';
 let lastCount: number = -1;
@@ -31,25 +28,5 @@ export default (window: BrowserWindow, trayIcon: Tray) => {
         const size = is.macos ? 16 : 32;
         const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
         trayIcon.setImage(icon);
-    });
-
-    ipcMain.on('unreadCount', (event, count: number) => {
-        app.setBadgeCount(Number(count))
-
-        if (store.get('app.showOnMessage')) {
-            if (count > 0) {
-                window.show();
-            }
-        }
-
-        if (is.linux) {
-            if (count > 0 && lastCount != count) {
-                if (fs.existsSync(scriptPath)) {
-                    spawn(scriptPath);
-                }
-            }
-        }
-
-        lastCount = count;
     });
 }
