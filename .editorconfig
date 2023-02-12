@@ -30,4 +30,4 @@ indent_brace_style = 1TBS
 spaces_around_brackets = both
 
 [*.{scss,css,ts,js,html,json,vue,yml,yaml}]
-indent_size = 2
+indent_size = 4

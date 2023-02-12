@@ -28,37 +28,37 @@ let trayIcon = null;
 reportExceptions();
 
 if (enforceSingleInstance()) {
-  app.whenReady()
-    .then(() => {
-      overrideUserAgent();
-      mainWindow = windowWrapper(environment.appUrl);
-      setupOfflineHandlers(mainWindow);
-      checkForInternet(mainWindow);
+    app.whenReady()
+        .then(() => {
+            overrideUserAgent();
+            mainWindow = windowWrapper(environment.appUrl);
+            setupOfflineHandlers(mainWindow);
+            checkForInternet(mainWindow);
 
-      trayIcon = setupTrayIcon(mainWindow);
-      logFirstLaunch();
-      setAppMenu(mainWindow);
-      restoreFirstInstance(mainWindow);
-      keepWindowState(mainWindow);
-      runAtLogin(mainWindow);
-      updateNotifier();
-      enableContextMenu();
-      badgeIcons(mainWindow, trayIcon);
-      closeToTray(mainWindow);
-      externalLinks(mainWindow);
-      handleNotification(mainWindow);
-      enforceMacOSAppLocation();
-    })
+            trayIcon = setupTrayIcon(mainWindow);
+            logFirstLaunch();
+            setAppMenu(mainWindow);
+            restoreFirstInstance(mainWindow);
+            keepWindowState(mainWindow);
+            runAtLogin(mainWindow);
+            updateNotifier();
+            enableContextMenu();
+            badgeIcons(mainWindow, trayIcon);
+            closeToTray(mainWindow);
+            externalLinks(mainWindow);
+            handleNotification(mainWindow);
+            enforceMacOSAppLocation();
+        })
 }
 
 app.setAppUserModelId('com.electron.google-chat');
 
 app.on('window-all-closed', () => {
-  app.exit();
+    app.exit();
 });
 
 app.on('activate', () => {
-  if (mainWindow) {
-    mainWindow.show();
-  }
+    if (mainWindow) {
+        mainWindow.show();
+    }
 });

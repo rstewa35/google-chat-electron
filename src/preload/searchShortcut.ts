@@ -1,20 +1,20 @@
 import {ipcRenderer} from 'electron';
 
 const getSearchElement = () => {
-  return <HTMLElement>document.querySelector('input[name="q"]')
+    return <HTMLElement>document.querySelector('input[name="q"]')
 }
 
 // https://stackoverflow.com/a/38873788
 function isVisible(element: HTMLElement) {
-  return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
+    return !!(element.offsetWidth || element.offsetHeight || element.getClientRects().length);
 }
 
 // Listen to event coming from main process
 ipcRenderer.on('searchShortcut', (event) => {
-  const element = getSearchElement();
+    const element = getSearchElement();
 
-  if (element && isVisible(element)) {
-    element.focus()
-  }
+    if (element && isVisible(element)) {
+        element.focus()
+    }
 });
 

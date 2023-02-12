@@ -1,9 +1,9 @@
-import { ipcMain, app, nativeImage, BrowserWindow, Tray } from 'electron';
+import {app, BrowserWindow, ipcMain, nativeImage, Tray} from 'electron';
 import path from 'path';
-import { is } from "electron-util";
+import {is} from "electron-util";
 import store from '../config';
 import fs from 'fs';
-import { spawn } from 'child_process';
+import {spawn} from 'child_process';
 
 type IconTypes = 'offline' | 'normal' | 'badge';
 let lastCount: number = -1;
@@ -11,45 +11,45 @@ const scriptPath = path.join(app.getPath('appData'), 'google-chat-electron', 'on
 
 // Decide app icon based on favicon URL
 const decideIcon = (href: string): IconTypes => {
-  let type: IconTypes = 'offline';
+    let type: IconTypes = 'offline';
 
-  if (href.match(/favicon_chat_r2/) ||
-    href.match(/favicon_chat_new_non_notif_r2/)) {
-    type = 'normal';
-  } else if (href.match(/favicon_chat_new_notif_r2/)) {
-    type = 'badge';
-  }
+    if (href.match(/favicon_chat_r2/) ||
+        href.match(/favicon_chat_new_non_notif_r2/)) {
+        type = 'normal';
+    } else if (href.match(/favicon_chat_new_notif_r2/)) {
+        type = 'badge';
+    }
 
-  return type;
+    return type;
 }
 
 export default (window: BrowserWindow, trayIcon: Tray) => {
 
-  ipcMain.on('faviconChanged', (evt, href) => {
-    const type = decideIcon(String(href));
+    ipcMain.on('faviconChanged', (evt, href) => {
+        const type = decideIcon(String(href));
 
-    const size = is.macos ? 16 : 32;
-    const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
-    trayIcon.setImage(icon);
-  });
+        const size = is.macos ? 16 : 32;
+        const icon = nativeImage.createFromPath(path.join(app.getAppPath(), `resources/icons/${type}/${size}.png`))
+        trayIcon.setImage(icon);
+    });
 
-  ipcMain.on('unreadCount', (event, count: number) => {
-    app.setBadgeCount(Number(count))
+    ipcMain.on('unreadCount', (event, count: number) => {
+        app.setBadgeCount(Number(count))
 
-    if (store.get('app.showOnMessage')) {
-      if (count > 0) {
-        window.show();
-      }
-    }
-
-    if (is.linux) {
-      if (count > 0 && lastCount != count) {
-        if (fs.existsSync(scriptPath)) {
-          spawn(scriptPath);
+        if (store.get('app.showOnMessage')) {
+            if (count > 0) {
+                window.show();
+            }
         }
-      }
-    }
-    
-    lastCount = count;
-  });
+
+        if (is.linux) {
+            if (count > 0 && lastCount != count) {
+                if (fs.existsSync(scriptPath)) {
+                    spawn(scriptPath);
+                }
+            }
+        }
+
+        lastCount = count;
+    });
 }
