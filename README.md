@@ -4,6 +4,7 @@
 * Currently only supporting macOS and Windows for releases, but you are welcome to build from source for any other platform.
 * I plan on adding this package to the app stores struck-through below (e.g., Homebrew, Chocolatey, etc.). I'll update the README when this happens.
 * I also intend on fixing the Linux build in the future when I get some time.
+* I added the **Issues** tab to this repo, so feel free to create one with any issues you run into.
 
 # Desktop app for Google Chat
 
